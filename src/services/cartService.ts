@@ -1,0 +1,28 @@
+import { cartModel } from "../models/cartModel";
+import productModel from "../models/productModel";
+
+interface CreateCartForUser {
+    userId: string;
+}
+
+const createCartForUser = async ({ userId }: CreateCartForUser) => {
+    const cart = await cartModel.create({ userId });
+    await cart.save();
+    return cart;
+}
+
+interface GetActiveCartForUser {
+    userId: string;
+}
+
+export const getActiveCartForUser = async ({
+    userId,
+}: GetActiveCartForUser) => {
+    let cart = await cartModel.findOne({ userId, status: "active"});
+
+    if(!cart) {
+        cart = await createCartForUser({ userId });
+    }
+
+    return cart;
+}
