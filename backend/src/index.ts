@@ -22,9 +22,9 @@ mongoose
 // Seed the prodcuts to database
 seedInitialProducts();
 
-app.use('/user' , userRoute)
-app.use('/product' , productRoute)
-app.use('/cart' , cartRoute)
+app.use('/user' , userRoute);
+app.use('/product' , productRoute);
+app.use('/cart' , cartRoute);
 
 app.listen(port, () => {
     console.log(`Server is running at: http://localhost:${port}`)
