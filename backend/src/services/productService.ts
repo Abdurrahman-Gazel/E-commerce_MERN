@@ -1,35 +1,41 @@
 import productModel from "../models/productModel";
-
-export const getAllProducts = async () =>{
-    return await productModel.find();
-};
-
-export const seedInitialProducts = async () => {
-
-    try{
-        const products = [
-            { title: "Product 1", image: "image1.jpg", price: 10, stock: 100 },
-            { title: "Product 2", image: "image2.jpg", price: 20, stock: 80 },
-            { title: "Product 3", image: "image3.jpg", price: 40, stock: 10 },
-            { title: "Product 4", image: "image4.jpg", price: 70, stock: 15 },
-            { title: "Product 5", image: "image5.jpg", price: 110, stock: 20 },
-            { title: "Product 6", image: "image6.jpg", price: 120, stock: 80 },
-            { title: "Product 7", image: "image7.jpg", price: 40, stock: 60 },
-            { title: "Product 8", image: "image8.jpg", price: 15, stock: 65 },
-            { title: "Product 9", image: "image9.jpg", price: 45, stock: 90 },
-            { title: "Product 10", image: "image10.jpg", price: 35, stock: 25 }
-        ];
-    
-        const existingProducts = await getAllProducts();
-    
-        if(existingProducts.length === 0) {
-            await productModel.insertMany(products)
-        }
-
-    }   catch (err){
-        console.error("Cannot see database" , err)
-
-    } 
-   
-};
-
+ 
+ export const getAllProducts = async () => {
+   return await productModel.find();
+ };
+ 
+ export const seedInitialProducts = async () => {
+   try {
+     const products = [
+       {
+         title: "Dell Laptop",
+         image:
+           "https://m.media-amazon.com/images/I/61+9ew81AfL._AC_UF1000,1000_QL80_.jpg",
+         price: 15000,
+         stock: 10,
+       },
+       {
+         title: "Asus Laptop",
+         image:
+           "https://dlcdnwebimgs.asus.com/gain/4cc342ab-c4fa-42a9-8619-a340f6119bec/w800",
+         price: 25000,
+         stock: 20,
+       },
+       {
+         title: "HP Laptop",
+         image:
+           "https://www.hp.com/gb-en/shop/Html/Merch/Images/c06723377_1750x1285.jpg",
+         price: 40000,
+         stock: 8,
+       },
+     ];
+ 
+     const existingProducts = await getAllProducts();
+ 
+     if (existingProducts.length === 0) {
+       await productModel.insertMany(products);
+     }
+   } catch (err) {
+     console.error("cannot see database", err);
+   }
+ };
